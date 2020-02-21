@@ -1,0 +1,21 @@
+package StringMethod;
+
+public class HelloWorld {
+
+    public static void main(String[] args) {
+
+        String str = "Hello, World!";
+
+        // Examples:
+
+        System.out.println(str.length());
+
+        System.out.println(str.substring(4)); // this prints out the fourth index to the end
+                                             //  the answer is o, World!
+
+        System.out.println(str.toUpperCase()); // makes the whole thing uppercase
+        System.out.println(str.toLowerCase()); // makes the whole thing lowercase
+
+    }
+
+}
