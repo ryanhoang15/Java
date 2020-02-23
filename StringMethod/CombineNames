@@ -1,0 +1,16 @@
+package StringMethod;
+
+public class CombineNames {
+
+    public static void main(String[] args) {
+
+        // Add your first names:
+        String firstName = "Ryan";
+        String lastName = "Hoang";
+
+        // What's the full name?
+        System.out.println(firstName.concat(lastName)); // using the .concat() method to get RyanHoang as the answer
+
+    }
+
+}
