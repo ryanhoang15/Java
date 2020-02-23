@@ -14,7 +14,9 @@ public class HelloWorld {
                                              //  the answer is o, World!
 
         System.out.println(str.toUpperCase()); // makes the whole thing uppercase
+        
         System.out.println(str.toLowerCase()); // makes the whole thing lowercase
+        
         System.out.println(str.substring(4,11)); //this would print out starting from the 4th index to the 11th index
         // the answer is o, Worl // if u use .substring(4,11) or any other range than is prints from index 4 to index 10
         // if u use a range remember like from 4,11 its going to be 11 - 1 which turn out to be 4 - 10 is your index that is going
