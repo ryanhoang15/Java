@@ -11,11 +11,8 @@ import java.util.Scanner;
 
 public class Birthday {
     public static void main(String[] args){
-        int x = (int) (7.5 - .4);
-        System.out.println(x);
         Scanner in = new Scanner(System.in);
-        double i = (double) 385 / 1760;
-        System.out.println(i);
+        // declaring all my variables 
         String name;
         String reply;
         int age;
@@ -29,7 +26,8 @@ public class Birthday {
         System.out.print(name + ", have you had your birthday yet this year ? (y/n) ");
         reply = in.next();
         thisYear = reply.charAt(0);
-
+        
+        // this if-else branch is calculating the year that you were born on
         if (thisYear == 'y' || thisYear == 'Y')
             birthYear = 2020 - age;
 
