@@ -1,0 +1,16 @@
+package ArrayEx;
+
+// import the ArrayList package here:
+import java.util.ArrayList;
+
+public class ArrayListEx {
+    public static void main(String[] args) {
+        // Create toDoList below:
+        // Are all examples of creating a Arraylist
+        ArrayList<String> toDoList = new ArrayList<String>();
+        ArrayList<Integer> ages = new ArrayList<Integer>();
+        ArrayList<Double> prices = new ArrayList<Double>();
+        ArrayList<Character> name = new ArrayList<Character>();
+
+    }
+}
