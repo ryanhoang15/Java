@@ -1,0 +1,120 @@
+package Wk_3;
+
+// Ryan Hoang
+// CECS 274-05
+// Prog 2 - Solitaire Prime
+// March 3, 2020
+
+import java.util.Scanner;
+
+public class Player {
+
+    public static boolean playSolitairePrime(Deck myDeck) {
+        System.out.println("Playing Solitaire Prime!!!");
+        int pile = 0;
+        int countPile = 0;
+        boolean win = false;
+
+        for (int i = 0; i < 52; i++) {
+            Card C = myDeck.deal();
+            C.display();
+            pile += C.getValue();
+
+            if (isPrime(pile)) {
+                System.out.printf("Prime:%d \n", pile);
+                pile = 0;
+                countPile++;
+            }
+        }
+        if (myDeck.cardsLeft() == 0) {
+            if (isPrime(pile)) {
+                win = true;
+                System.out.printf("Winner in %d piles! \n", countPile);
+
+            } else {
+                System.out.println("Loser");
+            }
+        }
+        return win;
+    }
+
+    public static boolean isPrime(int x) {
+        for (int i = 2; i <= x / 2; i++) {
+            if (x % i == 0) {
+                return false;
+            }
+        }
+        if (x == 1) {
+            return false;
+        }
+        return true;
+    }
+
+    public static int menu() {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Welcome to Solitaire Prime");
+        System.out.println("1) New Deck");
+        System.out.println("2) Display deck");
+        System.out.println("3) Shuffle Deck");
+        System.out.println("4) Play Solitaire Prime");
+        System.out.println("5) Exit");
+        System.out.println("6) Simulate 1000 games");
+        System.out.println("Pick which number you would like to do");
+        int option = in.nextInt();
+        return option;
+    }
+
+    public static void main(String[] args) {
+        int x = menu();
+        Deck myDeck = new Deck();
+        while (x != 5) {
+            switch (x) {
+                case 1:
+                    myDeck = new Deck();
+                    x = menu();
+                    break;
+
+                case 2:
+                    myDeck.display();
+                    x = menu();
+                    break;
+
+                case 3:
+                    myDeck.shuffle();
+                    x = menu();
+                    break;
+
+                case 4:
+                    playSolitairePrime(myDeck);
+                    x = menu();
+                    break;
+
+                case 6:
+                    int win = 0;
+                    int lose = 0;
+                    for (int i = 0; i < 1000; i++) {
+                        myDeck = new Deck();
+                        myDeck.shuffle();
+                        if (playSolitairePrime(myDeck)) {
+                            win++;
+                        }
+                        else {
+                            lose++;
+                        }
+                    }
+                    System.out.println("In 1000 games, you won:" + win + " and lost:" + lose);
+                    x = menu();
+                    break;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
