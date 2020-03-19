@@ -1,5 +1,11 @@
 public int countNode(head){
+// asume head != null 
   int count = 0;
   Node current = head;
+  while(curent != null){
+    count++;
+    current = current.getNext();
+  }
+  return count;
 
 }
