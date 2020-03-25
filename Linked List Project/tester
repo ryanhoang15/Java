@@ -1,0 +1,94 @@
+package Wk_4;
+
+// Ryan Hoang
+// CECS 274-05
+// Prog 3 - Linked List
+// March 26, 2020
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class Tester {
+
+    public static void main(String[] args){
+
+        LinkedList list = new LinkedList();
+        String[] alpha = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
+        String[] vowel = {"a","e","i","o","u"};
+        String  word = " ";
+        Random rand = new Random();
+        for(int i = 0; i < 100; i++){
+            String letter_1 = alpha[rand.nextInt(26)];
+            String letter_2 = vowel[rand.nextInt(5)];
+            String letter_3 = alpha[rand.nextInt(26)];
+            String letter_4 = alpha[rand.nextInt(26)];
+            word = letter_1 + letter_2 + letter_3 + letter_4;
+            list.add(word);
+
+        }
+        list.display();
+
+        Scanner in = new Scanner(System.in);
+
+        System.out.print("\n\n(A)dd, (D)elete, (F)ind, (Q)uit, ");
+
+        System.out.println("List Size: " + list.size());
+
+       String option = in.nextLine().toUpperCase();
+
+       while(!option.equals("Q")){
+
+           switch (option) {
+
+               case "A":
+                   for (int i = 0; i < 1; i++) {
+                       String letter_1 = alpha[rand.nextInt(26)];
+                       String letter_2 = vowel[rand.nextInt(5)];
+                       String letter_3 = alpha[rand.nextInt(26)];
+                       String letter_4 = alpha[rand.nextInt(26)];
+                       word = letter_1 + letter_2 + letter_3 + letter_4;
+                   }
+                   int position = list.add(word);
+
+
+                   list.display();
+                   System.out.println("\n\n" + word + " was added at location " + position);
+                   System.out.print("\n(A)dd, (D)elete, (F)ind, (Q)uit, ");
+                   System.out.println("List Size: " + list.size());
+
+                   option = in.nextLine().toUpperCase();
+                   break;
+
+               case "D":
+
+                   int deleteWord = rand.nextInt(list.size());
+
+                   list.delete(deleteWord);
+
+
+                   System.out.print("\n(A)dd, (D)elete, (F)ind, (Q)uit, ");
+
+                   System.out.println("List Size: " + list.size());
+
+                   option = in.nextLine().toUpperCase();
+                   break;
+
+
+               case "F":
+                   list.display();
+                   System.out.print("\n\n What word form the list would you like to find: ");
+                   option = in.nextLine();
+                   list.find(option);
+
+                   list.display();
+                   System.out.print("\n\n(A)dd, (D)elete, (F)ind, (Q)uit, ");
+
+                   System.out.println("List Size: " + list.size());
+
+                   option = in.nextLine().toUpperCase();
+                   break;
+           }
+       }
+
+    }
+}
