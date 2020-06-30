@@ -1,0 +1,9 @@
+public int[] makeMiddle(int[] nums) {
+  int n = nums.length;
+  // if(n % 2 == 0){
+  //   return new int[] {nums[n/2 - 1], nums[n/2]};
+  // }
+  // return nums;
+   return new int[] {nums[n/2 - 1], nums[n/2]};
+  
+}
