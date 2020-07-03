@@ -1,0 +1,7 @@
+public int[] midThree(int[] nums) {
+  int x = nums.length;
+  if(nums.length > 3){
+   return new int[] {nums[x/2 - 1], nums[x/2], nums[x/2 + 1]};
+  }
+  return nums;
+}
