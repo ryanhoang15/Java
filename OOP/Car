@@ -1,0 +1,43 @@
+public class Car {
+    public String model;
+    public String color;
+    public int seat;
+
+    public void display(){
+        System.out.println("Model is : " + model);
+        System.out.println("Color is : " + color);
+        System.out.println("Seat is : " + seat);
+    }
+
+
+}
+
+public class ClassesMain {
+    public static void main(String[] args){
+        Car ferrari = new Car();
+        ferrari.model = "Ferrari F430";
+        ferrari.seat = 4;
+        ferrari.color = "Red";
+        ferrari.display();
+        System.out.println();
+
+        Car tesla = new Car();
+        tesla.model = "Model S";
+        tesla.seat = 4;
+        tesla.color = "Black";
+        tesla.display();
+        System.out.println();
+
+        Car audi = new Car();
+        audi.model = "Audi SQ5";
+        audi.color = "Blue";
+        audi.seat = 4;
+        audi.display();
+
+// Object declaration and memory allocation
+        Car test; // reference variable
+        test = new Car(); // memory allocation
+
+
+    }
+}
