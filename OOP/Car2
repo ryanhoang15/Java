@@ -1,0 +1,50 @@
+public class Car2 {
+    // initialize instance variabls At the time of declaration
+//    public String model = "Model S";
+//    public String color = "Red";
+//    public int seat = 4;
+    public String model;
+    public String color;
+    public int seat;
+
+
+    public void display(){
+        System.out.println("Model is : " + model);
+        System.out.println("Color is : " + color);
+        System.out.println("Seat is : " + seat);
+    }
+
+    public void initialize(String model_s, String red, int i) {
+        model = model_s;
+        color = red;
+        seat = i;
+    }
+}
+
+public class MainClass {
+    public static void main(String[] args){
+        /* There are 3 ways to initialize instance variables
+        1. At the time of declaration
+        2. Method
+        3. From main class using reference variables
+         */
+
+        Car2 c = new Car2();
+        //c.initialize("Model S", "Red", 4);
+
+        // initialize instance variables using reference variables
+        c.model = "Model S";
+        c.color = "Red";
+        c.seat = 4;
+
+        Car2 c1 = new Car2();
+        // initialize instance variables using a method
+        c1.initialize("Model S2", "Black", 2);
+
+        c.display();
+        c1.display();
+
+
+
+    }
+}
