@@ -1,0 +1,36 @@
+public class Car3 {
+    public String model;
+    public String color;
+    public int seat;
+
+    public Car3(String model, String color, int seat){
+        this.model = model;
+        this.color = color;
+        this. seat = seat;
+    }
+
+    public void display(){
+        System.out.println("Model is : " + model);
+        System.out.println("Color is : " + color);
+        System.out.println("Seat is : " + seat);
+    }
+
+}
+
+public class MainClass3 {
+    public static void main(String[] args){
+        /*
+        * access-modifiers are - public, private, etc.
+        * <access-modifiers> <class name> (<parameters>){
+        * initialization of members
+        * }
+        *
+        */
+
+        Car3 c = new Car3("Tesla Model S", "Silver", 4);
+        c.display();
+
+
+
+    }
+}
