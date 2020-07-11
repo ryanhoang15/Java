@@ -1,0 +1,34 @@
+public class CAR4 {
+    public int seat = 4;
+    public void display(){
+        System.out.println("Parent class");
+    }
+}
+
+public class Ferrari extends CAR4 {
+    public void displayFerrari(){
+        System.out.println("In Ferrari");
+    }
+}
+
+public class InheritanceMain {
+    public static void main(String[] args){
+        CAR4 c = new CAR4();
+        c.display();
+        System.out.println(c.seat);
+        Ferrari f = new Ferrari();
+        f.displayFerrari();
+        f.display();
+        System.out.println(f.seat);
+
+        CAR4 cf = new Ferrari();
+        System.out.println("CF : " + cf.seat);
+        cf.display();
+
+
+
+
+
+
+    }
+}
