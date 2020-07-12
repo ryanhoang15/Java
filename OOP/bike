@@ -1,0 +1,43 @@
+class bike{
+    // Data or Attributes
+    public boolean power;
+    public int speed;
+
+    // operations or Methods or Behavior
+
+    public void start(){
+        power = true;
+        speed = 0;
+    }
+
+    public void stop(){
+        power = false;
+        speed = 0;
+    }
+
+    public void accelerate(int newSpeed){
+        speed = newSpeed;
+    }
+
+    public void printState(){
+        System.out.println("Current State");
+        System.out.println("Power - " + power);
+        System.out.println("Speed - " + speed);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        bike b1, b2;
+        b1 = new bike();
+        b2 = new bike();
+
+        b1.start();
+        b2.start();
+
+        b1.accelerate(50);
+
+        b1.printState();
+        b2.printState();
+    }
+}
