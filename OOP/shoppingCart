@@ -1,0 +1,27 @@
+import java.util.LinkedList;
+
+class shoppingCart{
+    private LinkedList<String> products = new LinkedList<String>();
+
+    public void addToCart(String product){
+        products.add(product);
+
+    }
+
+    public void order(){
+        System.out.println("Ordered Products");
+        System.out.println(products);
+
+    }
+}
+
+public class main3 {
+    public static void main(String[] args) {
+        shoppingCart cart1 = new shoppingCart();
+        cart1.addToCart("a");
+        cart1.addToCart("b");
+        cart1.addToCart("c");
+
+        cart1.order();
+    }
+}
