@@ -1,0 +1,37 @@
+class myMath2{
+    public static int add(int x, int y){
+        return x + y;
+    }
+
+    public static int sub(int x, int y){
+        return x - y;
+    }
+}
+//class sample3{
+//    int value;
+//
+//    public void set(int x){
+//        value = x;
+//    }
+//
+//    public int get(){
+//        return value;
+//    }
+//
+//}
+
+public class sTaTic {
+    public static void main(String[] args) {
+
+
+        int a = myMath2.add(10,20);
+        int b = myMath2.sub(5,2);
+
+        System.out.println(a);
+        System.out.println(b);
+
+//        sample2 obj1 = new sample2();
+//        obj1.set(10);
+//        System.out.println(obj1.get());
+    }
+}
