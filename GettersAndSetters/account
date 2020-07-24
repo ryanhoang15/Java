@@ -1,1 +1,13 @@
+public class account {
+    private int balance;
 
+    // this is a setter to change it
+    public void setBalance(int balance){
+        this.balance = balance;
+    }
+
+    // this is a getter to get the info
+    public int getBalance() {
+        return balance;
+    }
+}
