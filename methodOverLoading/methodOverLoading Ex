@@ -1,1 +1,16 @@
+public class methodOverLoading {
+    public void method1(){
+        System.out.println("No argument");
+    }
 
+    public void method1(int i){
+        System.out.println("Integer argument : " + i);
+    }
+
+    public static void main(String[] args) {
+        methodOverLoading methodOverloading = new methodOverLoading();
+        methodOverloading.method1();
+        methodOverloading.method1(10);
+    }
+
+}
