@@ -1,0 +1,31 @@
+class A{
+
+}
+
+class B extends A{
+
+}
+
+public class ChildParentOverLoading {
+    public void m1(A a){
+        System.out.println("Parent");
+    }
+    public void m1(B b){
+        
+        System.out.println("child");
+    }
+    public static void main(String[] args) {
+        ChildParentOverLoading childparentOverloading = new ChildParentOverLoading();
+        A a = new A();
+        childparentOverloading.m1(a);
+
+        B b = new B();
+        childparentOverloading.m1(b);
+
+        A ab = new B();
+        childparentOverloading.m1(ab);
+
+
+
+    }
+}
