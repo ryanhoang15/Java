@@ -1,0 +1,17 @@
+public class ChildParentOverloadingRule {
+    public void m1(String str){
+        System.out.println("String version");
+    }
+
+    public void m1(Object object){
+        System.out.println("Object version");
+    }
+    public static void main(String[] args) {
+        ChildParentOverloadingRule childparentOverloadingrule = new ChildParentOverloadingRule();
+        childparentOverloadingrule.m1(new Object());
+        childparentOverloadingrule.m1("String");
+        childparentOverloadingrule.m1(null);
+
+
+    }
+}
