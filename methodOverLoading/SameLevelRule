@@ -1,0 +1,17 @@
+public class SameLevelRule {
+    public void m1(String string){
+        System.out.println("String Version");
+    }
+
+    public void m1(StringBuffer stringBuffer){
+        
+        System.out.println("StringBuffer version");
+    }
+
+    public static void main(String[] args) {
+        SameLevelRule samelevelRule = new SameLevelRule();
+        samelevelRule.m1("Name");
+        samelevelRule.m1(new StringBuffer("NameSB"));
+
+    }
+}
