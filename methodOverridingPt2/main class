@@ -1,0 +1,14 @@
+public class main {
+    public static void main(String[] args) {
+        parent parent = new parent();
+        parent.m1();
+
+        child Child = new child();
+        Child.m1();
+
+        parent parent1 = new child();
+        parent1.m1(); // child class method gets called
+
+    }
+
+}
