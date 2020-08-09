@@ -1,1 +1,16 @@
+public class constructorOverloading {
+    public constructorOverloading(int a){
 
+    }
+
+    public constructorOverloading(int a, int b){
+
+    }
+
+    public static void main(String[] args) {
+        constructorOverloading constructoroverLoading = new constructorOverloading(4,5);
+
+
+    }
+
+}
