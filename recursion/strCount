@@ -1,0 +1,16 @@
+public int strCount(String str, String sub) {
+  int strLength = str.length();
+  int subLength = sub.length();
+  if (strLength < subLength){
+    return 0;
+  }
+  
+  if(str.substring(0,subLength).equals(sub)){
+    return strCount(str.substring(subLength),sub) + 1;
+  }
+  else{
+       return strCount(str.substring(1),sub);
+  }
+
+  
+}
