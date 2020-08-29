@@ -1,0 +1,75 @@
+package Lab_1;
+
+import java.util.Random;
+
+public class arrayStats {
+    public static int max(int[] nums){
+        int max = nums[0];
+        for(int m = 1; m < nums.length; m++){
+            if(nums[m] > max){
+                max = nums[m];
+            }
+        }
+        return max;
+
+    }
+    public static int min(int[] nums){
+        int min = nums[0];
+        for(int n = 1; n < nums.length; n++){
+            if(nums[n] < min){
+                min = nums[n];
+            }
+        }
+        return min;
+
+    }
+    public static double avg(int[] nums){
+//        double count = 0.0;
+//        double value = 0.0;
+//        for(int k = 0; k < nums.length; k++){
+//            value = value + nums[k];
+//            count++;
+//        }
+//        return (value / count);
+        return ( (double) sum(nums) / nums.length);
+
+    }
+    public static int sum(int[] nums){
+        int total = 0;
+        for(int j = 0; j < nums.length; j++){
+            total = total + nums[j];
+        }
+        return total;
+
+    }
+    public static void toString(int[] nums){
+        System.out.println("Print the list of numbers here");
+        for(int i = 0; i < nums.length; i++){
+            System.out.print(nums[i] + " ");
+        }
+        System.out.println();
+
+    }
+
+    public static void main(String[] args) {
+        int[] nums = new int[20];
+        Random rand = new Random();
+
+        for(int i = 0; i < 20; i++){
+            int randNum = rand.nextInt(401) + 100;
+            nums[i] = randNum;
+        }
+//        int [] nums = {2, 3, 5, 7, 11};
+
+        toString(nums);
+
+        System.out.println("Ave: "+ avg(nums));
+
+        System.out.println("Max: "+ max(nums));
+
+        System.out.println("Min: "+ min(nums));
+
+        System.out.println("Sum: "+ sum(nums));
+
+    }
+}
