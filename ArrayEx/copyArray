@@ -1,0 +1,35 @@
+package practiceProblem;
+
+public class copyArray {
+    public static void main(String[] args) {
+        int[] arr1 = {1, 2, 3, 4, 5};
+        int[] arr2 = new int[arr1.length];
+
+//        arr2 = arr1; // copy the memory address
+        for (int i = 0; i < arr1.length; i++) {
+            arr2[i] = arr1[i];
+        }
+        arr1[2] = 10;
+
+        for (int i = 0; i < arr1.length; i++) {
+            System.out.println(arr1[i]);
+        }
+
+        for (int i = 0; i < arr2.length; i++) {
+            System.out.println(arr2[i]);
+        }
+        boolean isEqual = true;
+        for(int i = 0; i < arr1.length; i++){
+            if (arr1[i] != arr2[i]){
+                isEqual = false;
+            }
+        }
+
+//        arr2 = arr1;
+        if (isEqual) {
+            System.out.println("Same");
+        } else {
+            System.out.println("Diff");
+        }
+    }
+}
