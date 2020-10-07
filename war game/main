@@ -1,1 +1,162 @@
+import java.util.ArrayList;
+import java.util.Scanner;
 
+class Main {
+
+	public static void printMenu() {
+		System.out.println("\n\nWelcome to the Main Menu");
+		System.out.println("0: Exit");
+		System.out.println("1: Test CardsUtil Functions");
+		System.out.println("2: Play Greedy War!");
+		System.out.print("\nYour selection: ");
+	}
+
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int mainSelection;
+
+		do {
+			printMenu();
+
+			mainSelection = Integer.parseInt(in.nextLine().trim());
+			if (mainSelection == 1) {
+				CardsUtil.testCardsUtil();
+				System.out.println();
+			} else if (mainSelection == 2) {
+				// creating the standard deck and shuffling
+				ArrayList<Card> deck = CardsUtil.createStandardDeck();
+
+				CardsUtil.shuffleDeck(deck);
+
+				// dealing the cards
+				ArrayList<Card> playerHand = CardsUtil.dealCards(deck, 26);
+				System.out.println("Player starts with " + playerHand.size() + " cards.");
+
+				ArrayList<Card> computerHand = CardsUtil.dealCards(deck, 26);
+				System.out.println("Computer starts with " + playerHand.size() + " cards.");
+
+				int gameSelection = 1;
+				int round = 1;
+				while (gameSelection != 0) {
+					System.out.println("-------------------ROUND " + round + "-------------------");
+					System.out.println("\nYou play card: ");
+					Card playerCard = GreedGameUtil.playHand(playerHand);
+
+					System.out.println("\nThe computer plays card: ");
+					Card computerCard = GreedGameUtil.playHand(computerHand);
+          int sum = playerCard.getRank();
+
+//--------------- WORK ON THIS BLOCK -----------------------------
+// This block defines what happens if player plays card with smaller rank
+					if (playerCard.getRank() < computerCard.getRank()) {
+
+						System.out.print(
+								"Would you like to play a second round? \n0 - No. \n1 - Yes. \n\n Your response: ");
+						int secondCardResponse = Integer.parseInt(in.nextLine().trim());
+            if(playerHand.isEmpty()) {
+              System.out.println("You don't have enough cards.");
+              break;
+            } 
+            else if (secondCardResponse == 1) {
+              System.out.println("\nYou play card: ");
+              Card newPlayerCard = GreedGameUtil.playHand(playerHand); //The second card dealt
+              sum = sum + newPlayerCard.getRank();
+              if(sum <= computerCard.getRank()) { //Win condition
+                playerHand.add(computerCard);
+                playerHand.add(playerCard);
+                playerHand.add(newPlayerCard);
+                System.out.println("\nYou WIN this round!");
+              }
+              else { //If the second card loses or ties
+                computerHand.add(computerCard);
+                computerHand.add(playerCard);
+                computerHand.add(newPlayerCard);
+                System.out.println("\nYou LOSE this round!");
+              }
+						} 
+						else {
+              computerHand.add(computerCard);
+              computerHand.add(playerCard);
+              System.out.println("\nYou LOSE this round!");
+						}
+//-------------------------------------------------------------------------------
+					} 
+					else if (playerCard.getRank() > computerCard.getRank()) {
+						playerHand.add(computerCard);
+						playerHand.add(playerCard);
+						System.out.println("\nYou WIN this round!");
+					}
+
+					else {
+            if(playerHand.size() < 4) {
+              System.out.println("You do not have enough cards to go to war. You lose.");
+              break;
+            }
+						System.out.println("\n\nThis means WAR!");
+						System.out.print("\nYour war hand: ");
+						ArrayList<Card> playerWarCards = GreedGameUtil.playWarHand(playerHand);
+
+						System.out.print("\nThe computer's war hand: ");
+						ArrayList<Card> computerWarCards = GreedGameUtil.playWarHand(computerHand);
+
+						int lastIdx = playerWarCards.size() - 1;
+						Card playerWarCard = playerWarCards.get(lastIdx);
+						Card computerWarCard = computerWarCards.get(lastIdx);
+
+						if (playerWarCard.getRank() < computerWarCard.getRank()) {
+							computerHand.add(playerCard);
+							computerHand.add(computerCard);
+
+							while (playerWarCards.size() > 0) {
+								computerHand.add(playerWarCards.remove(0));
+							}
+
+							while (computerWarCards.size() > 0) {
+								computerHand.add(computerWarCards.remove(0));
+
+							}
+
+							System.out.println("\nYou LOST this War! Better luck next time!\nTotal Cards Lost: 5");
+						} else {
+							playerHand.add(playerCard);
+							playerHand.add(computerCard);
+
+							while (playerWarCards.size() > 0) {
+								playerHand.add(playerWarCards.remove(0));
+							}
+
+							while (computerWarCards.size() > 0) {
+								playerHand.add(computerWarCards.remove(0));
+
+							}
+							System.out.println("\nYou WON this War! \nTotal Cards Earned: 5");
+						}
+					}
+
+          if(playerHand.size() == 0) {
+            System.out.println("You lose. Not enough cards");
+            break;
+          } else if(playerHand.size() == 52) {
+            System.out.println("You win.");
+            break;  
+          }
+
+					System.out.println("You now have " + playerHand.size() + " cards.");
+					System.out.println("The computer has " + computerHand.size() + " cards.");
+					System.out.println("\n\nPlay a card?\n0: No. Exit to Main.\n1: Yes.");
+					System.out.print("\nYour selection: ");
+					gameSelection = Integer.parseInt(in.nextLine().trim());
+
+					round++;
+				}
+
+			} else if (mainSelection != 0) {
+				System.out.println("Your selection is invalid.  You will be taken back to the main menu.");
+			}
+
+		} while (mainSelection != 0);
+
+		in.close();
+
+	}
+}
