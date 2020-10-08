@@ -1,0 +1,63 @@
+ public class Card {
+	
+	private Suits suit;
+	private int rank;
+	
+	
+	public Card( int rank, Suits suit) {
+		this.rank = rank;
+		this.suit = suit;
+	}
+	
+	public Suits getSuit() {
+		return this.suit;
+	}
+	
+	public int getRank() {
+		return this.rank;
+	}
+
+	public String toString()
+	{
+		
+		String suitSymbol = "Invalid";
+		String rankSymbol = "Invalid";
+		
+		if(this.rank < 11 && this.rank > 1) {
+			rankSymbol = Integer.toString(this.rank);
+		}
+		else if (this.rank == 1) {
+			rankSymbol = "A";
+		}
+		else if (this.rank == 11) {
+			rankSymbol = "J";
+		}
+		else if (this.rank == 12) {
+			rankSymbol = "Q";
+		}
+		else if (this.rank == 13) {
+			rankSymbol = "K";
+		}
+
+		
+		switch(this.suit) {
+			case HEARTS:
+				suitSymbol = "\u2665";
+				break;
+			case SPADES:
+				suitSymbol = "\u2660";
+        break;
+			case DIAMONDS:
+				suitSymbol = "\u2666";
+				break;
+			case CLUBS:
+				suitSymbol = "\u2663";
+				break;
+		}
+				
+		return rankSymbol + " " + suitSymbol;
+	}
+	
+}
+
+
