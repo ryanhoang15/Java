@@ -1,0 +1,114 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class CardsUtil {
+	
+  /**
+  creates a standard deck of 52 cards with suits clubs, diamonds, hearts, and spades
+  @return an array list of 52 Card objects
+  **/
+	public static ArrayList<Card> createStandardDeck(){
+    Suits[] allSuits = {Suits.CLUBS, Suits.DIAMONDS, Suits.HEARTS, Suits.SPADES };
+		ArrayList<Card> deck = new ArrayList<Card>();
+		
+		for(Suits s : allSuits) {
+			for(int i = 1; i <= 13; i++) {
+				deck.add(new Card(i, s));
+			}
+		}
+		return deck; 
+	}
+
+  /**
+  shuffles a given deck 
+  @param deck - the array list of Card objects that must be shuffled
+  **/
+  public static void shuffleDeck(ArrayList<Card> deck){
+
+    Collections.shuffle(deck);
+
+  }
+
+  /**
+  deals a given amount of cards (deals the stack as-is, does NOT shuffle)
+  @param deck - the array list of Cards from which to deal
+  @param numCards - an integer specifying the number of cards to deal from the deck
+  @return  an array list of Card objects of size numCards
+  **/
+	public static ArrayList<Card> dealCards(ArrayList<Card> deck, int numCards){
+    ArrayList<Card> dealHand = new ArrayList<Card>(numCards);
+    for(int i = 0; i < numCards; i++){
+      dealHand.add(deck.remove(0)); //Moves card form deck into hand
+    }
+		
+		return dealHand;
+	}
+	
+  /**
+  prints the hand of cards stored in the given list
+  @param hand - an array list of Card objects
+  **/
+  public static void printHand(ArrayList<Card> hand){
+      for(int i = 0; i < hand.size(); i++) {
+    	if(i%13 == 0) System.out.println();
+    	System.out.print(hand.get(i) + "  ");
+    }
+  }
+
+  public static void testCardsUtil(){
+    System.out.println("\n\n----------------Testing CardsUtil.createStandardDeck():----------------");
+      //testing the function that creates the standard deck
+    ArrayList<Card> newDeck = CardsUtil.createStandardDeck();
+    System.out.println("\nNew deck: ");
+    
+    printHand(newDeck);
+
+    System.out.println("\nNumber of cards in original deck: " + newDeck.size());
+      
+
+    System.out.println("\n\n----------------Testing CardsUtil.shuffleDeck():----------------");
+    //testing the shuffling function 
+    CardsUtil.shuffleDeck(newDeck);
+    System.out.println("\nShuffled deck: ");
+    printHand(newDeck);
+    System.out.println("\nNumber of cards in original deck: " + newDeck.size());
+
+    CardsUtil.shuffleDeck(newDeck);
+    System.out.println("\nDeck Shuffled Again: ");
+    printHand(newDeck);
+
+
+    System.out.println("\nNumber of cards in original deck: " + newDeck.size());
+      
+    System.out.println("\n\n----------------Testing CardsUtil.dealCards(newDeck, 26):----------------");
+
+    ArrayList<Card> player1Deck = CardsUtil.dealCards(newDeck, 26);
+    System.out.println("\nAfter dealing 26 cards to Player 1...");
+    System.out.println("\nPlayer 1 deck: ");
+    printHand(player1Deck);
+    System.out.println("\nNumber of cards in Player 1 hand: " + player1Deck.size());
+      
+    System.out.println("\nCards left in main deck:");
+    printHand(newDeck);
+
+      
+    System.out.println("\nNumber of cards left in original deck: " + newDeck.size());
+
+    System.out.println("\n\n----------------Testing CardsUtil.dealCards(newDeck, 10):----------------");
+    System.out.println("\nAfter dealing 10 cards to Player 2...");
+    ArrayList<Card> player2Deck = CardsUtil.dealCards(newDeck, 10);
+    System.out.println("\nPlayer 2 deck: ");
+    printHand(player2Deck);
+  
+    System.out.println("\nNumber of cards in Player 2 hand: " + player2Deck.size());
+      
+    System.out.println("\nCards left in main deck:");
+    printHand(newDeck);
+
+    System.out.println("\nNumber of cards left in original deck: " + newDeck.size());
+
+  }
+
+
+
+}
