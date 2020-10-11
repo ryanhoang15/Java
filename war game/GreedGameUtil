@@ -1,0 +1,45 @@
+import java.util.ArrayList;
+
+public class GreedGameUtil{
+  /**
+  shuffles a deck returning the playing card of a round in Greedy War!
+  Prints all other cards face down.
+  @return a Card object that is the playing card of the current round.
+  **/
+  public static Card playHand(ArrayList<Card> hand){
+      
+    CardsUtil.shuffleDeck(hand);
+
+    for(int i = 1; i < hand.size(); i++) {
+    	if(i%10 == 1) System.out.println();
+    	System.out.print("X  ");
+    }
+    Card playingCard = hand.remove(0);
+    System.out.println(playingCard);
+    
+    return playingCard;
+  }
+
+  /**
+  shuffles the provided player hand, removes 4 cards to add into the list 
+  of war cards hand, then returns the list.  The last war card is the playing card.
+	@return an ArrayList of the four war Card objects.
+  **/
+  public static ArrayList<Card> playWarHand(ArrayList<Card> hand){
+    
+    CardsUtil.shuffleDeck(hand);
+    ArrayList<Card> warCards = new ArrayList<Card>(4);
+    for(int i = 0; i < 4; ++i) {      
+      warCards.add(hand.remove(0)); //Moves card from hand into warCards
+    }
+  
+    System.out.print("X" + " ");
+    System.out.print("X" + " ");
+    System.out.print("X" + " ");
+    System.out.print(warCards.get(warCards.size() - 1));
+    
+    return warCards;
+
+  }
+
+}
