@@ -1,1 +1,182 @@
+import java.io.File;
+import java.io.PrintWriter;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+class Main {
+    /**
+     * This function's purpose is to check if there is any same item in the cart
+     * @param SKU - is the barcode entered in by the user as a String
+     * @param cart
+     * @return true if an item is already in the cart otherwise false
+     */
+    public static boolean checkSame(String SKU, ArrayList<CartItem> cart){
+        for(int i = 0; i < cart.size(); i++){
+            if(SKU.equals(cart.get(i).getCartSKU())){
+                cart.get(i).sameItem();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * This function's purpose is to eliminate unnecessary whitespaces
+     * @param word - is passing in the String word
+     * @return the new word as a String with the whitespaces gone
+     */
+    public static String format(String word){
+        String newWrd = "";
+        int count = 1;
+        for(int i = 0; i < word.length(); i++){
+            if(word.charAt(i) != ' ') {
+                newWrd = newWrd + word.charAt(i);
+            }
+            else{
+                if(count > 0){
+                    newWrd = newWrd + ' ';
+                    count--;
+                }
+            }
+        }
+        return newWrd;
+
+    }
+
+    /**
+     * This is where the user starts to enter in the information
+     *
+     * @throws FileNotFoundException - if there is no file found
+     */
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner in = new Scanner(System.in);
+        String receipt;
+        String SKU = " ";
+        Receipt newReceipt = new Receipt();
+
+        System.out.println("Enter the name of receipt: ");
+        receipt = in.nextLine();
+
+        String regularStr = "(\\d+)\\s+((\\w+|\\W+)+)\\s+(\\d+\\s+\\w+)\\s+(\\d+.\\d+)";
+        Pattern pattern = Pattern.compile(regularStr);
+
+        ArrayList<CartItem> cart = new ArrayList<CartItem> ();
+        boolean found = false;
+        while(!SKU.equals("q"))
+        {
+          File inputFile = new File("new_products.txt");
+          Scanner input = new Scanner(inputFile);
+          System.out.println("Enter the SKU (Q - to quit): ");
+          SKU = in.nextLine().toLowerCase();
+            if(!checkSame(SKU,cart))//if the input is not in the cart
+            {
+              while(input.hasNextLine()) //this is supposed to read through the
+              //lines of the textfile to look for the sku
+              { 
+                    String line = input.nextLine(); //this is the current line 
+                    Matcher m = pattern.matcher(line);
+                    if(m.find())  //this matches the pattern to the current line in the text
+                    {
+                      //check if our input SKU is in the cart ArrayList
+                          //loop through text
+                          if(SKU.equals(m.group(1)))
+                          {
+                            CartItem item = new CartItem();
+                            String label = format(m.group(2));
+                            Product product = new Product(m.group(1), label, m.group(4), Double.parseDouble(m.group(5)));
+                            System.out.println(product.getName());
+                            item.setCartItem(product);
+                            cart.add(item);
+                            found = true;
+                          }
+                    }
+                    
+              }
+                if(!found){
+                  System.out.println("Invalid product! Please try again.");
+                }
+                //We have already visited all products in the textfile
+            }
+            input.close();
+        }
+        
+        
+        //display total amount owed and ask for payment
+        double total= 0;
+       for(int i=0;i<cart.size();i++){
+           total += (cart.get(i).getQuantity() * cart.get(i).getCartPrice());
+       }//adds up total in Cartlist
+        double finalTotal = total;
+        System.out.printf("%s%.2f","Total $", finalTotal);
+        System.out.println();
+        double payment = 0;
+        if(total > 0){
+            System.out.print("Please enter your payment: ");
+            payment = in.nextDouble();
+            total = total - payment;
+            System.out.println();
+        }
+
+        double change = total;
+        boolean payed = true;
+        while(payed){
+            if(total == 0.00 || total < 0){
+                if(total < 0){
+                    change = change * -1;
+                }
+                System.out.println("Thank you for your payment.");
+                System.out.printf("%s%.2f","Your change is: ",change);
+                payed = false;
+                System.out.println("\nHere is your receipt:");
+                System.out.println();
+            }
+            else{
+                System.out.printf("%s%.2f","Amount still owed: ",total);
+
+                System.out.println("\nPlease pay the rest to continue.");
+                payment = in.nextDouble();
+                total=total-payment;
+                change = total;
+            }
+        }
+        //create a receipt text file and print out in console
+        String receiptName = receipt+".txt";
+        try
+        {
+            PrintWriter writer = new PrintWriter(receiptName);
+            writer.println("------------------------------------------------");
+            System.out.println("------------------------------------------------");
+            writer.println("Just Fooding");
+            System.out.println("Just Fooding");
+            writer.println("123 E. Lechuga St.");
+            System.out.println("123 E. Lechuga St.");
+            writer.println("Carrotville, CA 99999\n\n\n");
+            System.out.println("Carrotville, CA 99999\n\n\n");
+            writer.printf("%-60s %-10s %-10s","Item"," ","Subtotal");
+            System.out.printf("%-60s %-10s %-10s","Item"," ","Subtotal");
+            System.out.println();
+            for(int i=0;i<cart.size();i++)
+            {
+                writer.printf("%-60s%d%s%.2f%-10s%.2f\n",cart.get(i).getCartName(),cart.get(i).getQuantity(),"(@",cart.get(i).getCartPrice(),")",(cart.get(i).getQuantity() * cart.get(i).getCartPrice()));
+                System.out.printf("%-60s%d%s%.2f%-10s%.2f\n",cart.get(i).getCartName(),cart.get(i).getQuantity(),"(@",cart.get(i).getCartPrice(),")",(cart.get(i).getQuantity() * cart.get(i).getCartPrice()));
+            }
+            writer.println("\n\n");
+            System.out.println("\n\n");
+            writer.printf("%s%.2f","Total $", finalTotal);
+            System.out.printf("%s%.2f","Total $", finalTotal);
+            System.out.println();
+            writer.println();
+            writer.println("------------------------------------------------");
+            System.out.println("------------------------------------------------");
+            writer.close();
+        }
+        catch(FileNotFoundException fnf)
+        {
+            System.out.println("File was not found");
+        }
+    }
+}
 
