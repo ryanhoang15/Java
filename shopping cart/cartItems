@@ -1,1 +1,68 @@
+public class CartItem{
+    /**
+     * This is a private variable for the items
+     */
+    private int quantity;
+    /**
+     * This is a private object for the Product
+     */
+    private Product obj;
 
+
+    /**
+     * creates a CartItem object with a quantity of 1
+     **/
+    public CartItem(){
+        this.quantity = 1;
+    }
+
+    /**
+     * creates a Product object with given name, size, and price
+     * @param P - is the product object getting passed in
+     * That specific Product P is getting a quantity of 1
+     **/
+    public void setCartItem(Product P){
+        this.quantity = 1;
+        this.obj = P;
+    }
+
+    /**
+     * if item already in the cart and the quantity is increased
+     */
+    public void sameItem(){
+        quantity++;
+    }
+
+    /**
+     * Retrieve the object name
+     * @return the name of the object as a String
+     */
+    public String getCartName(){
+        return obj.getName();
+    }
+
+    /**
+     * Retrieve the object barcode
+     * @return the barcode of the object as a String
+     */
+    public String getCartSKU(){
+        return obj.getSKU();
+    }
+
+    /**
+     * Retrieve how many items of the same object
+     * @return the number of the same object in the cart as an Integer
+     */
+    public int getQuantity(){
+        return this.quantity;
+    }
+
+    /**
+     * Retrieve the object price
+     * @return the price of the object as a Double
+     */
+    public double getCartPrice(){
+        return obj.getPrice();
+    }
+
+}
