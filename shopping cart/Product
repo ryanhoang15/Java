@@ -1,0 +1,102 @@
+public class Product {
+	/**
+	 * The String name of the barcode
+	 */
+	private String productSKU;
+	/**
+	 * the String name of this product
+	 */
+	private String productName;
+	/**
+	 * the String size of this product as a string
+	 */
+	private String productSize;
+	/**
+	 * the double price of this product as a double
+	 */
+	private double productPrice;
+
+	/**
+	 * creates a Product object with given name, size, and price
+	 * @param productSKU - the String name of the barcode
+	 * @param productName - the String name of this product
+	 * @param productSize - the String size of this product as a string
+	 * @param productPrice  - the double price of this product as a double
+	 * **/
+	public Product(String productSKU, String productName, String productSize, double productPrice) {
+		this.productSKU = productSKU;
+		this.productName = productName;
+		this.productSize = productSize;
+		this.productPrice = productPrice;
+	}
+
+	/**
+	 *gets the name of the product as a String
+	 *@return returns the name as a String
+	 **/
+	public String getName() {
+		return this.productName;
+	}
+
+	/**
+	 *gets the SKU of the product as a String
+	 *@return returns the number as a String
+	 **/
+	public String getSKU() {
+		return this.productSKU;
+	}
+
+	/**
+	 *gets the name of the product as a String
+	 *@return the name as a String
+	 **/
+	public String getSize() {
+		return this.productSize;
+	}
+
+	/**
+	 *gets the size of the product as a String
+	 *@return returns the size as a String
+	 **/
+	public double getPrice() {
+		return this.productPrice;
+	}
+
+	/**
+	 * overrides toString() so that an object of this class is printed with the name, size, and price
+	 * */
+	public String toString() {
+		return String.format("%-30s%-10s$%-10.2f", this.productName.substring(0, Math.min(25, this.productName.length())),
+				this.productSize.substring(0, Math.min(5, this.productSize.length())),
+				this.productPrice);
+	}
+
+	/**
+	 * overrides equals() so that two Product objects are considered equal if the
+	 * strings representing their SKU numbers are equal
+	 * */
+	public boolean equals(Object other) {
+
+		Product otherProduct = (Product) other;
+
+		if(this.productSKU.equals(otherProduct.getSKU())) {
+			return true;
+		}
+
+		return false;
+	}
+
+
+	/**
+	 *
+	 * This is testing if the Product.java is working correctly
+	 */
+	public static void main(String[] args) {
+		System.out.println("--------------PRODUCT TESTER-----------------");
+		Product p = new Product("12354","Cookies", "12 dz", 3.50);
+		System.out.println("Printing object: "+p);
+		System.out.println("Expected: Cookies                       12 dz     $3.50");
+	}
+
+}
+
