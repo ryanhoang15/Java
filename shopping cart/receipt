@@ -1,0 +1,48 @@
+import java.util.ArrayList;
+
+public class Receipt {
+	/**
+	 * This is a private ArrayList to store the items
+	 */
+	private ArrayList<Product> purchasedProducts;
+	/**
+	 * This is a private variable to store the total price
+	 */
+	private double total;
+
+
+	/**
+	 * creates a Receipt using an Arraylist
+	 * **/
+	public Receipt() {
+		this.purchasedProducts = new ArrayList<Product>();
+		this.total = 0;
+	}
+
+	/**
+	 * add the products to the ArrayList
+	 * @param p - is the product getting added to the ArrayList
+	 * Also the price of the product is getting added to the total
+	 * **/
+	public void addProduct(Product p) {
+		purchasedProducts.add(p);
+		this.total += p.getPrice();
+	}
+
+	/**
+	 * Retrieve the total price
+	 * @return the total amount from the products
+	 */
+	public double getTransactionTotal() {
+		return this.total;
+	}
+
+	/**
+	 * Retrieve the String value
+	 * @return the toString of the product
+	 */
+	public String toString() {
+		return "";
+	}
+
+}
